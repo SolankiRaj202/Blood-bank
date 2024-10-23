@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lifeline - Know Your Blood Type</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+        .page-wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .header {
+            background-color: #dc3545;
+            padding: 1rem;
+            color: white;
+            text-align: left;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo {
+            max-width: 60px;
+            height: auto;
+            margin-right: 0.5rem;
+        }
+        .site-title {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        .header p {
+            margin: 0.5rem 0 0;
+            font-size: 1rem;
+        }
+        .nav {
+            background-color: #343a40;
+            padding: 0.5rem;
+            text-align: center;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        .nav a:hover {
+            background-color: #495057;
+        }
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            background-color: white;
+            max-width: 800px;
+            margin: 2rem auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #dc3545;
+        }
+        .blood-type-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .blood-type-card {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        .blood-type {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #dc3545;
+            margin-bottom: 0.5rem;
+        }
+        .compatibility-info {
+            margin-top: 2rem;
+            background-color: #e9ecef;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        .compatibility-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .compatibility-table th, .compatibility-table td {
+            border: 1px solid #dee2e6;
+            padding: 0.5rem;
+            text-align: center;
+        }
+        .compatibility-table th {
+            background-color: #dc3545;
+            color: white;
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <header class="header">
+            <div class="logo-container">
+                <img src="unnamed.png" alt="Lifeline Logo" class="logo">
+                <h1 id="lifeline" class="site-title">Lifeline</h1>
+            </div>
+            <p>Your Heart Beats for Others</p>
+        </header>
+
+        <nav class="nav">
+            <a href="home (1).html">Home</a>
+            <a href="admin-login.html">Admin Login</a>
+            <a href="contact-us.html">Contact Us</a>
+            <a href="about-us.html">About Us</a>
+        </nav>
+
+        <main class="main-content">
+            <h1>Know Your Blood Type</h1>
+            <p>Understanding blood types is crucial for safe blood transfusions and donations. There are eight main blood types, determined by the presence or absence of certain antigens on red blood cells.</p>
+
+            <div class="blood-type-grid">
+                <div class="blood-type-card">
+                    <div class="blood-type">A+</div>
+                    <p>Can receive from: A+, A-, O+, O-</p>
+                    <p>Can donate to: A+, AB+</p>
+                </div>
+                <div class="blood-type-card">
+                    <div class="blood-type">A-</div>
+                    <p>Can receive from: A-, O-</p>
+                    <p>Can donate to: A+, A-, AB+, AB-</p>
+                </div>
+                <div class="blood-type-card">
+                    <div class="blood-type">B+</div>
+                    <p>Can receive from: B+, B-, O+, O-</p>
+                    <p>Can donate to: B+, AB+</p>
+                </div>
+                <div class="blood-type-card">
+                    <div class="blood-type">B-</div>
+                    <p>Can receive from: B-, O-</p>
+                    <p>Can donate to: B+, B-, AB+, AB-</p>
+                </div>
+                <div class="blood-type-card">
+                    <div class="blood-type">AB+</div>
+                    <p>Can receive from: All types</p>
+                    <p>Can donate to: AB+</p>
+                </div>
+                <div class="blood-type-card">
+                    <div class="blood-type">AB-</div>
+                    <p>Can receive from: A-, B-, AB-, O-</p>
+                    <p>Can donate to: AB+, AB-</p>
+                </div>
+                <div class="blood-type-card">
+                    <div class="blood-type">O+</div>
+                    <p>Can receive from: O+, O-</p>
+                    <p>Can donate to: A+, B+, AB+, O+</p>
+                </div>
+                <div class="blood-type-card">
+                    <div class="blood-type">O-</div>
+                    <p>Can receive from: O-</p>
+                    <p>Can donate to: All types</p>
+                </div>
+            </div>
+
+            <div class="compatibility-info">
+                <h2>Blood Type Compatibility Chart</h2>
+                <table class="compatibility-table">
+                    <tr>
+                        <th>Blood Type</th>
+                        <th>Can Donate To</th>
+                        <th>Can Receive From</th>
+                    </tr>
+                    <tr>
+                        <td>A+</td>
+                        <td>A+, AB+</td>
+                        <td>A+, A-, O+, O-</td>
+                    </tr>
+                    <tr>
+                        <td>A-</td>
+                        <td>A+, A-, AB+, AB-</td>
+                        <td>A-, O-</td>
+                    </tr>
+                    <tr>
+                        <td>B+</td>
+                        <td>B+, AB+</td>
+                        <td>B+, B-, O+, O-</td>
+                    </tr>
+                    <tr>
+                        <td>B-</td>
+                        <td>B+, B-, AB+, AB-</td>
+                        <td>B-, O-</td>
+                    </tr>
+                    <tr>
+                        <td>AB+</td>
+                        <td>AB+</td>
+                        <td>All Types</td>
+                    </tr>
+                    <tr>
+                        <td>AB-</td>
+                        <td>AB+, AB-</td>
+                        <td>A-, B-, AB-, O-</td>
+                    </tr>
+                    <tr>
+                        <td>O+</td>
+                        <td>A+, B+, AB+, O+</td>
+                        <td>O+, O-</td>
+                    </tr>
+                    <tr>
+                        <td>O-</td>
+                        <td>All Types</td>
+                        <td>O-</td>
+                    </tr>
+                </table>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>© 2024 Lifeline. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

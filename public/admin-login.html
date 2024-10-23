@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="lifelineApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lifeline - Admin Login</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            background-image: url('blood donation.png');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .logo {
+            display: block;
+            margin: 0 auto 20px;
+            width: 100px;
+        }
+        h2 {
+            color: #e74c3c;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .password-container {
+            position: relative;
+        }
+        .show-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #666;
+        }
+        .error {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        button[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button[type="submit"]:hover {
+            background-color: #c0392b;
+        }
+        button[type="submit"]:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body ng-controller="AdminLoginCtrl">
+    <div class="login-container">
+        <a href="home (1).html"><img src="unnamed.png" alt="Lifeline Logo" class="logo"></a>
+        <h2>Admin Login</h2>
+        <form name="adminLoginForm" ng-submit="submitForm()" novalidate>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" ng-model="admin.username" required ng-minlength="4" ng-maxlength="20">
+                <span class="error" ng-show="adminLoginForm.username.$error.required && adminLoginForm.username.$touched">Username is required.</span>
+                <span class="error" ng-show="adminLoginForm.username.$error.minlength">Username must be at least 4 characters long.</span>
+                <span class="error" ng-show="adminLoginForm.username.$error.maxlength">Username must not exceed 20 characters.</span>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <div class="password-container">
+                    <input type="{{ showPassword ? 'text' : 'password' }}" id="password" name="password" ng-model="admin.password" required ng-minlength="8">
+                    <button type="button" class="show-password" ng-click="toggleShowPassword()">
+                        {{ showPassword ? 'Hide' : 'Show' }}
+                    </button>
+                </div>
+                <span class="error" ng-show="adminLoginForm.password.$error.required && adminLoginForm.password.$touched">Password is required.</span>
+                <span class="error" ng-show="adminLoginForm.password.$error.minlength">Password must be at least 8 characters long.</span>
+            </div>
+            <button type="submit" ng-disabled="adminLoginForm.$invalid">Login</button>
+            <p class="error" ng-show="loginError">{{ loginError }}</p>
+        </form>
+    </div>
+
+    <script>
+        angular.module('lifelineApp', [])
+        .controller('AdminLoginCtrl', function($scope, $window) {
+            $scope.admin = {};
+            $scope.showPassword = false;
+            $scope.loginError = '';
+
+            // Hardcoded credentials (in a real application, these would be stored securely on the server)
+            const validUsername = 'admin';
+            const validPassword = 'password123';
+
+            $scope.toggleShowPassword = function() {
+                $scope.showPassword = !$scope.showPassword;
+            };
+
+            $scope.submitForm = function() {
+                if ($scope.adminLoginForm.$valid) {
+                    // Check if the entered credentials match the valid ones
+                    if ($scope.admin.username === validUsername && $scope.admin.password === validPassword) {
+                        console.log('Login successful');
+                        $scope.loginError = '';
+                        // Redirect to admin dashboard
+                        $window.location.href = 'admin-dashbord.html';
+                    } else {
+                        console.log('Login failed');
+                        $scope.loginError = 'Invalid username or password';
+                    }
+                } else {
+                    console.log('Form is invalid');
+                }
+            };
+        });
+    </script>
+</body>
+</html>

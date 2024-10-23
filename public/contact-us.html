@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lifeline - Contact Us</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        
+
+
+body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        .page-wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: #dc3545;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: white;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            max-width: 80px;
+            height: auto;
+            margin-right: 1rem;
+        }
+
+        .site-title {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .nav {
+            background-color: #343a40;
+            padding: 0.5rem;
+            text-align: center;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+        }
+
+        .content-wrapper {
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <header class="header">
+            <div class="logo-container">
+                <img src="unnamed.png" alt="Lifeline Logo" class="logo">
+                <h1 id="lifeline" class="site-title">Lifeline</h1>
+            </div>
+            <p>Your Heart Beats for Others</p>
+        </header>
+
+        <nav class="nav">
+            <a href="home (1).html">Home</a>
+            <a href="admin-login.html">Admin Login</a>
+            <a href="contact-us.html">Contact Us</a>
+            <a href="about-us.html">About Us</a>
+        </nav>
+
+        <div class="content-wrapper">
+            <div class="contact-form">
+                <h2>Contact Us</h2>
+                <p>Have questions or concerns? Reach out to us using the form below.</p>
+
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject:</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+
+                    <button type="submit" id="submitButton">Send Message</button>
+                </form>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>© 2024 Lifeline. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("mqp_GuWvx7dA1piVT");
+        })();
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

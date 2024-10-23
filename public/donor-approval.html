@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Request Approval</title>
+    <style>
+        .page-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .logo {
+            max-width: 100px;
+        }
+
+        .donor-requests {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .donor-requests th,
+        .donor-requests td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .donor-requests th {
+            background-color: #f4f4f4;
+        }
+
+        .approve-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .approve-btn:hover {
+            background-color: #45a049;
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="header">
+            <div class="logo-container">
+                <img src="unnamed.png" alt="Lifeline Logo" class="logo">
+                <h1>Lifeline Blood Bank</h1>
+            </div>
+            <p>Donor Request Approval System</p>
+        </div>
+
+        <div id="error" class="error"></div>
+
+        <table class="donor-requests">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Blood Group</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Disease</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="requestsTable">
+                <!-- Donor requests will be populated here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function loadDonorRequests() {
+            fetch('http://localhost:3005/api/donor-requests')
+                .then(response => response.json())
+                .then(donors => {
+                    const tableBody = document.getElementById('requestsTable');
+                    tableBody.innerHTML = '';
+
+                    donors.forEach(donor => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${donor.firstName} ${donor.lastName}</td>
+                            <td>${donor.age}</td>
+                            <td>${donor.gender}</td>
+                            <td>${donor.bloodGroup}</td>
+                            <td>${donor.phoneNumber}</td>
+                            <td>${donor.email}</td>
+                            <td>${donor.disease}</td>
+                            <td>
+                                <button class="approve-btn" onclick="approveDonor('${donor._id}')">
+                                    Approve
+                                </button>
+                            </td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => {
+                    document.getElementById('error').textContent = 'Error loading donor requests: ' + error.message;
+                });
+        }
+
+        function approveDonor(donorId) {
+            fetch(`http://localhost:3009/api/approve-donor/${donorId}`, {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message === 'Donor request approved and blood stock updated') {
+                    loadDonorRequests(); // Refresh the table
+                } else {
+                    throw new Error(data.error);
+                }
+            })
+            .catch(error => {
+                document.getElementById('error').textContent = 'Error approving donor: ' + error.message;
+            });
+        }
+
+        // Load donor requests when page loads
+        document.addEventListener('DOMContentLoaded', loadDonorRequests);
+    </script>
+</body>
+</html>
